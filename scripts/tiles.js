@@ -31,8 +31,8 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
   	p.preload = function(){
   		$.each( obj, function( key, value ) {
 			years.push(key);
-		  	// videos.push(p.createVideo("images/" +crop + "/" + equipment + "/"  + key + "/video.mp4"))
-		  	videos.push(p.createVideo("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
+		  	videos.push(p.createVideo("images/" +crop + "/" + equipment + "/"  + key + "/video.mp4"))
+		  	// videos.push(p.createVideo("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
 		  
 		  	// p.loadJSON("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4", function(data){
 		  	// 	console.log(data);
@@ -74,7 +74,7 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
 	p.draw = function() {
 		p.background(background);
 		// p.textFont(myFont);
-		p.textFont('Poor Richard');
+		p.textFont('Corbel');
 		for(var i=0; i< quarterTiles.length; i++){
 				// if(!quarterTiles[i].isFullScreen){
 					quarterTiles[i].moveIntoPlace();
