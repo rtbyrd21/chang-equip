@@ -166,11 +166,11 @@ function CropTile(startingPos, item, index) {
   	if(selectedCrop == this.item){
       // p.rect(this.x - 5, this.y - 5, (this.width * .93) + 10, this.height + 10);
       p.image(hilight, this.x - 15, this.y - 15, (this.width * .93) + 30, this.height + 30);
-      if(this.index % 2 === 0){
+      // if(this.index % 2 === 0){
         p.fill(green);
-      }else{
-        p.fill(brown);
-      }
+      // }else{
+      //   p.fill(brown);
+      // }
       p.strokeWeight(2);
       p.stroke(255);
   		p.rect(this.x, this.y, this.width * .93, this.height);
@@ -178,11 +178,11 @@ function CropTile(startingPos, item, index) {
       p.fill(255); 
   	}else{
       p.image(shadow, this.x - 5, this.y - 5, (this.width * .93) + 10, this.height + 10);
-  		if(this.index % 2 === 0){
+  		// if(this.index % 2 === 0){
         p.fill(green);
-      }else{
-        p.fill(brown);
-      }
+      // }else{
+      //   p.fill(brown);
+      // }
       p.strokeWeight(2);
       p.stroke(255);
   		p.rect(this.x, this.y, this.width * .93, this.height);
@@ -239,11 +239,11 @@ function EquiptmentTile(startingPos, item, index) {
 
   	if(selectedEquip == this.item){
       p.image(hilight, this.x - 15, this.y - 15, (this.width * .93) + 30, this.height + 30);
-  		if(this.index % 2 === 0){
-        p.fill(green);
-      }else{
+  		// if(this.index % 2 === 0){
+    //     p.fill(green);
+    //   }else{
         p.fill(brown);
-      }
+      // }
       p.strokeWeight(2);
       p.stroke(255);
       
@@ -258,11 +258,11 @@ function EquiptmentTile(startingPos, item, index) {
     // p.noStroke()
     // p.rect(this.x - 5, this.y - 5, (this.width * .93) + 10, this.height + 10);
     p.image(shadow, this.x - 5, this.y - 5, (this.width * .93) + 10, this.height + 10);
-  		if(this.index % 2 === 0){
-        p.fill(green);
-      }else{
+  		// if(this.index % 2 === 0){
+    //     p.fill(green);
+    //   }else{
         p.fill(brown);
-      }
+      // }
       p.strokeWeight(2);
       p.stroke(255);
 
