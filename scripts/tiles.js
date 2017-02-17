@@ -32,11 +32,12 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
   		$.each( obj, function( key, value ) {
 			years.push(key);
 		  	// videos.push(p.createVideo("images/" +crop + "/" + equipment + "/"  + key + "/video.mp4"))
-		  	videos.push(p.createVideo("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
-		  
+		  	// videos.push(p.createVideo("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
+		    videos.push(p.createVideo("https://s3.us-east-2.amazonaws.com/changing-equipment/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
+
 		  	// p.loadJSON("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4", function(data){
 		  	// 	console.log(data);
-		  	// })
+		  	// }, 'jsonp')
 
 
 		  });
