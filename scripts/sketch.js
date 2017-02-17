@@ -16,7 +16,7 @@ myApp.controller('SketchController', function($scope, $rootScope, $timeout, $sta
   	var equiptmentTiles = [];
     var green;
     var brown;
-  	var crops = ['Corn', 'Soybeans', 'Hay', 'Small grains'];
+  	var crops = ['Corn', 'Soybeans', 'Hay', 'Smallgrains'];
   	var equiptment = ['Plowing', 'Planting', 'Cultivating', 'Harvesting'];
   	var tileCount = crops.length + equiptment.length;
   	var cropsMoving = true;

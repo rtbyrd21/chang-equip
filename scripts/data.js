@@ -174,7 +174,7 @@ var data = {
 		},
 
 
-		"small grains" : {
+		"smallgrains" : {
 			"plowing" : {
 				"1850s" : {
 					"description" : ["Iron plows pulled by horses or oxen were typical in the early days of the county. Plowing land near groves of trees was relatively easy, but the prairie had dense root systems that made plowing incredibly difficult. Until steel plows (like the one shown here) were available in McLean County, farmers had to deal with soil sticking to the plows and not turning over."]
