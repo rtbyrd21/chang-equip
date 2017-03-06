@@ -93,7 +93,7 @@ p.preload = function() {
         $scope.modalShown = true;
         $scope.modalText = 'Because hay was planted so close together, cultivating weeds was not necessary—the weeds were shaded out by the hay';
         $scope.$apply();
-      }else if(selectedCrop === 'small grains' && selectedEquip === 'cultivating'){
+      }else if(selectedCrop === 'smallgrains' && selectedEquip === 'cultivating'){
         $scope.modalShown = true;
         $scope.modalText = 'Because small grains were planted so closely together, cultivating weeds was not necessary—the weeds were shaded out by the wheat.';
         $scope.$apply();

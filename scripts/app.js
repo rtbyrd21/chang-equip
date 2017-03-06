@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp',['ui.router']);
 
-
+window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
 
 myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     

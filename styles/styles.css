@@ -9,6 +9,11 @@ body{
   src: url('../images/POORICH.TTF'); 
 }
 
+*{
+  -webkit-user-select: none; 
+  cursor: none;
+}
+
 #nav-bar{
   width: 5%;
   height: 8%;
@@ -65,7 +70,8 @@ body{
 .ng-modal-dialog-content {
   padding:25px;
   text-align: left;
-  font-family: 'MyFont';
+  font-family: 'Corbel';
+  font-size: 24px;
 }
 .ng-modal-close {
   position: absolute;

@@ -11,7 +11,22 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
   var obj = data.crop[crop][equipment];
 
 
-  
+  function sort(o) {
+   var a = [],i;
+   for(i in o){ 
+     if(o.hasOwnProperty(i)){
+         a.push([i,o[i]]);
+     }
+   }
+   a.sort(function(a,b){ return a[0]>b[0]?1:-1; })
+   return a;
+}
+
+  var sorted = sort(obj);
+
+
+
+
 
   var a = function(p) {
 
@@ -28,20 +43,20 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
   	var placeholder;
   	var myFont;
 
+  	var corbel;
+  	var corbelItalic;
   	p.preload = function(){
-  		$.each( obj, function( key, value ) {
-			years.push(key);
+  		// $.each( obj, function( key, value ) {
 
-		  	// videos.push(p.createVideo("images/" +crop + "/" + equipment + "/"  + key + "/video.mp4"))
-		  	// videos.push(p.createVideo("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
-		    videos.push(p.createVideo("https://s3.us-east-2.amazonaws.com/changing-equipment/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4"))
+  		sorted.forEach(function(item, index){
+  			years.push(item[0]);
+		  	videos.push(p.createVideo("images/" +crop + "/" + equipment + "/"  + item[0] + "/video.mp4"));
+  		})	
+			
+		  	corbel = p.loadFont('images/corbel.ttf');
+		  	corbelItalic = p.loadFont('images/corbelItalic.ttf');
 
-		  	// p.loadJSON("https://vineyardsandbox.s3.amazonaws.com/Rob/images/"+crop + "/" + equipment + "/"  + key + "/video.mp4", function(data){
-		  	// 	console.log(data);
-		  	// }, 'jsonp')
-
-
-		  });
+		  // });
   		temp = []
   		years.forEach(function(i){
   			temp.push(i.toString());
@@ -63,9 +78,9 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
 		
 		p.frameRate(90);
 		p.textAlign(p.CENTER);
-		placeholder = p.createVideo("images/corn/harvesting/1860s/video.mp4");
-		placeholder.loop();
-		placeholder.hide();
+		// placeholder = p.createVideo("images/corn/harvesting/1860s/video.mp4");
+		// placeholder.loop();
+		// placeholder.hide();
 
 		canvas = p.createCanvas(p.windowWidth, (p.windowWidth / 16) * 9);
 		canvas.parent('quarter-tiles');
@@ -74,6 +89,7 @@ myApp.controller('TileController', function($scope, $rootScope, $timeout, $state
 		quarterTiles.push(new QuarterTile(0 - p.windowWidth/2, p.height, p.windowWidth/2, p.height/2, [0,p.height/2], 2));
 		quarterTiles.push(new QuarterTile(p.windowWidth, p.height, p.windowWidth/2,p.height/2, [p.windowWidth/2,p.height/2], 3));
 
+		// console.log(videos);
 		
 
 	}
@@ -158,17 +174,18 @@ function QuarterTile(xPos, yPos, width, height, origin, index) {
 			this.y += this.distanceToMoveY;
 		}
 
-		if(!this.isClicked){	
+		if(!this.isClicked){
+
 				if(videos[index].loadedmetadata){
 					p.image(videos[index], this.x, this.y, this.width, this.height);
 					videos[index].volume(0);
 				}
 			}else{
 				if(videos[index].loadedmetadata){
-
+					// console.log(index);
 					p.image(videos[index], this.x, this.y, this.width, this.height);
 				}else{
-					p.image(placeholder, this.x, this.y, this.width, this.height);
+					// p.image(placeholder, this.x, this.y, this.width, this.height);
 					p.fill(0);
 					p.rect(this.x, this.y, this.width, this.height);
 					p.fill(255);
@@ -230,9 +247,25 @@ function QuarterTile(xPos, yPos, width, height, origin, index) {
 			var spacing = 0;
 			p.textLeading(18);
 			obj[years[index]].description.forEach(function(item, index){
+				p.textFont('Corbel');
 				p.text(item, that.slideX + (width * .15), (that.slideY + (height * .15)) + spacing, width * .7);
 				spacing += textHeight(item, width/2, 18 + 6);
 			});
+
+			obj[years[index]].credit.forEach(function(item, index){
+				var start = item.indexOf('~');
+				var end = item.indexOf('*');
+				var ital = item.slice(start, end);
+				p.textFont('Corbel');
+				p.text(item.replace(ital, '').replace('*','').replace('~',''), that.slideX + (width * .15), (that.slideY + (height * .9)), width * .7);
+				p.textFont('Corbel-Italic');
+				p.textStyle(p.ITALIC);
+				p.text(ital.replace('~',''), that.slideX + (width * .15) + p.textWidth(item.replace(ital, '').replace('*','').replace('~','')) + 7, (that.slideY + (height * .9)), width * .7);
+				p.textStyle(p.NORMAL);
+				p.textFont('Corbel');
+			});
+
+
 		}else{
 			p.fill(0, 0, 0, 200);
 			p.rect(this.slideX, this.slideY, width, height);
@@ -241,13 +274,28 @@ function QuarterTile(xPos, yPos, width, height, origin, index) {
 			var spacing = 0;
 			p.textLeading(18);
 			obj[years[index]].description.forEach(function(item, index){
+				p.textFont('Corbel');
 				p.text(item, that.slideX + (width * .15), (that.slideY + (height * .15)) + spacing, width * .7);	
 				spacing += textHeight(item, width/2, 18 + 6);
 			});
+
+			obj[years[index]].credit.forEach(function(item, index){
+				var start = item.indexOf('~');
+				var end = item.indexOf('*');
+				var ital = item.slice(start, end);
+				p.textFont('Corbel');
+				p.text(item.replace(ital, '').replace('*','').replace('~',''), that.slideX + (width * .15), (that.slideY + (height * .9)), width * .7);
+				p.textStyle(p.ITALIC);
+				p.text(ital.replace('~',''), that.slideX + (width * .15) + p.textWidth(item.replace(ital, '').replace('*','').replace('~','')) + 7, (that.slideY + (height * .9)), width * .7);
+				p.textStyle(p.NORMAL);
+				p.textFont('Corbel');
+			});
+
 			// p.text(obj[years[index]].description, this.slideX + (width *.25), this.slideY + (height * .25), width/2, height);
 			this.slideCompletelyOpen = true;
 		}
 	}
+
 
 	this.slideTileClosed = function(){
 		if(p.frameCount < this.speedToMove + (this.previousFrame - 1)){
